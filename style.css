@@ -10,3 +10,11 @@ body{
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
 }
+#reset{
+    margin-top: 20px;   
+}
+
+.cell {
+  border: 1px solid black;
+  font-size: 2rem;
+}
