@@ -26,8 +26,11 @@ function handleCellClick(e) {
 
   board[index] = currentPlayer;
   e.target.textContent = currentPlayer;
+  e.target.classList.add(currentPlayer.toLowerCase());
 
-  if (checkWin()) {
+  const winningLine = getWinningLine();
+  if (winningLine) {
+    winningLine.forEach(i => cells[i].classList.add("win"));
     statusText.textContent = currentPlayer + " wins!";
     gameOver = true;
     return;
@@ -43,8 +46,8 @@ function handleCellClick(e) {
   statusText.textContent = currentPlayer + "'s turn";
 }
 
-function checkWin() {
-  return winningLines.some(line => {
+function getWinningLine() {
+  return winningLines.find(line => {
     const [a, b, c] = line;
     return board[a] !== "" && board[a] === board[b] && board[b] === board[c];
   });
@@ -58,7 +61,10 @@ function resetGame() {
   for (let i = 0; i < board.length; i++) {
     board[i] = "";
   }
-  cells.forEach(cell => cell.textContent = "");
+  cells.forEach(cell => {
+    cell.textContent = "";
+    cell.classList.remove("x", "o", "win");
+  });
   currentPlayer = "X";
   gameOver = false;
   statusText.textContent = "X's turn";
