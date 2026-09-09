@@ -9,7 +9,7 @@ A simple black-and-white Tic Tac Toe (XO) game, built with plain HTML, CSS, and 
 - [x] HTML structure (3x3 grid, status line, reset button)
 - [x] CSS layout (flexbox page centering, grid board, basic cell borders)
 - [x] JavaScript game logic (turns, win detection, draw detection, reset)
-- [ ] Visual polish (colors, hover states, animations)
+- [x] Visual polish (colors, hover states, animations)
 - [ ] Score tracking across rounds
 - [ ] Sound effects
 - [ ] Two game modes (vs friend / vs computer)
