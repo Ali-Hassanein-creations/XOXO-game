@@ -2,7 +2,7 @@
 
 A simple black-and-white Tic Tac Toe (XO) game, built with plain HTML, CSS, and JavaScript — no frameworks, no build tools.
 
-**Version: 1.00**
+**Version: 1.01**
 
 ## Status
 
@@ -38,6 +38,9 @@ xo-game/
 Open `index.html` directly in a browser, or use the VS Code "Live Server" extension for auto-refresh on save.
 
 ## Version History
+
+### v1.01
+- Made it look nice from the neon side — cyberpunk-style visual overhaul.
 
 ### v1.00
 - Initial playable version.
