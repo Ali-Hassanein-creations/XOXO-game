@@ -67,6 +67,76 @@ body::before {
   pointer-events: none;
 }
 
+#scoreboard {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 4;
+  display: flex;
+  gap: 10px;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+  padding: 8px 14px;
+  background: rgba(10, 8, 20, 0.6);
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.score-box.score-x {
+  border: 1px solid rgba(5, 242, 242, 0.4);
+  box-shadow: 0 0 15px rgba(5, 242, 242, 0.2);
+}
+
+.score-box.score-o {
+  border: 1px solid rgba(255, 43, 214, 0.4);
+  box-shadow: 0 0 15px rgba(255, 43, 214, 0.2);
+}
+
+.score-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.score-box.score-x .score-label,
+.score-box.score-x .score-value {
+  color: var(--cyan);
+  text-shadow: 0 0 6px var(--cyan);
+}
+
+.score-box.score-o .score-label,
+.score-box.score-o .score-value {
+  color: var(--pink);
+  text-shadow: 0 0 6px var(--pink);
+}
+
+.score-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  #scoreboard {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+  }
+
+  .score-box {
+    min-width: 48px;
+    padding: 6px 10px;
+  }
+
+  .score-value {
+    font-size: 1.2rem;
+  }
+}
+
 .arena {
   position: relative;
   z-index: 3;

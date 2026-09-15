@@ -5,6 +5,10 @@ let gameOver = false;
 const cells = document.querySelectorAll(".cell");
 const statusText = document.getElementById("status");
 const resetButton = document.getElementById("reset");
+const scoreXText = document.getElementById("score-x");
+const scoreOText = document.getElementById("score-o");
+
+const scores = { X: 0, O: 0 };
 
 const winningLines = [
   [0, 1, 2],
@@ -33,6 +37,8 @@ function handleCellClick(e) {
     winningLine.forEach(i => cells[i].classList.add("win"));
     statusText.textContent = currentPlayer + " wins!";
     gameOver = true;
+    scores[currentPlayer]++;
+    updateScoreboard();
     return;
   }
 
@@ -55,6 +61,11 @@ function getWinningLine() {
 
 function checkDraw() {
   return board.every(cell => cell !== "");
+}
+
+function updateScoreboard() {
+  scoreXText.textContent = scores.X;
+  scoreOText.textContent = scores.O;
 }
 
 function resetGame() {
