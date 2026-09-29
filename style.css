@@ -120,7 +120,86 @@ body::before {
   font-weight: 700;
 }
 
+#players {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 4;
+  width: 200px;
+  padding: 12px;
+  background: rgba(10, 8, 20, 0.6);
+  border: 1px solid rgba(123, 47, 247, 0.4);
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+#players h2 {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+#user-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid;
+  border-radius: 6px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-x {
+  color: var(--cyan);
+  border-color: rgba(5, 242, 242, 0.3);
+}
+
+.user-o {
+  color: var(--pink);
+  border-color: rgba(255, 43, 214, 0.3);
+}
+
+.user:hover,
+.user.active {
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  text-shadow: 0 0 6px currentColor;
+}
+
 @media (max-width: 480px) {
+  #players {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
+
+  #user-list {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .user {
+    white-space: nowrap;
+    gap: 8px;
+  }
+
   #scoreboard {
     top: 12px;
     right: 12px;

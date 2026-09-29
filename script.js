@@ -8,7 +8,29 @@ const resetButton = document.getElementById("reset");
 const scoreXText = document.getElementById("score-x");
 const scoreOText = document.getElementById("score-o");
 
-const scores = { X: 0, O: 0 };
+const nameXText = document.getElementById("name-x");
+const nameOText = document.getElementById("name-o");
+const userList = document.getElementById("user-list");
+
+const users = [
+  { name: "NeonViper", side: "X" },
+  { name: "ByteKnight", side: "X" },
+  { name: "GlitchQueen", side: "X" },
+  { name: "CyberFox", side: "X" },
+  { name: "ZeroCool", side: "X" },
+  { name: "PixelRonin", side: "O" },
+  { name: "ChromeWitch", side: "O" },
+  { name: "NullRider", side: "O" },
+  { name: "VoltHex", side: "O" },
+  { name: "SynthGhost", side: "O" }
+];
+
+let wins = {};
+try {
+  wins = JSON.parse(localStorage.getItem("xoxo-wins")) || {};
+} catch (e) {}
+
+const players = { X: users[0], O: users[5] };
 
 const winningLines = [
   [0, 1, 2],
@@ -35,9 +57,13 @@ function handleCellClick(e) {
   const winningLine = getWinningLine();
   if (winningLine) {
     winningLine.forEach(i => cells[i].classList.add("win"));
-    statusText.textContent = currentPlayer + " wins!";
     gameOver = true;
-    scores[currentPlayer]++;
+    const winner = players[currentPlayer].name;
+    wins[winner] = (wins[winner] || 0) + 1;
+    try {
+      localStorage.setItem("xoxo-wins", JSON.stringify(wins));
+    } catch (e) {}
+    statusText.textContent = winner + " wins!";
     updateScoreboard();
     return;
   }
@@ -64,8 +90,30 @@ function checkDraw() {
 }
 
 function updateScoreboard() {
-  scoreXText.textContent = scores.X;
-  scoreOText.textContent = scores.O;
+  nameXText.textContent = players.X.name;
+  nameOText.textContent = players.O.name;
+  scoreXText.textContent = wins[players.X.name] || 0;
+  scoreOText.textContent = wins[players.O.name] || 0;
+  renderUsers();
+}
+
+function renderUsers() {
+  userList.innerHTML = "";
+  users.forEach(user => {
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    button.className = "user user-" + user.side.toLowerCase();
+    if (players[user.side] === user) button.classList.add("active");
+    button.innerHTML = `<span></span><b></b>`;
+    button.querySelector("span").textContent = user.side + " · " + user.name;
+    button.querySelector("b").textContent = wins[user.name] || 0;
+    button.addEventListener("click", () => {
+      players[user.side] = user;
+      updateScoreboard();
+    });
+    li.appendChild(button);
+    userList.appendChild(li);
+  });
 }
 
 function resetGame() {
@@ -83,3 +131,4 @@ function resetGame() {
 
 cells.forEach(cell => cell.addEventListener("click", handleCellClick));
 resetButton.addEventListener("click", resetGame);
+updateScoreboard();
