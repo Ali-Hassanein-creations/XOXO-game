@@ -98,6 +98,10 @@ body::before {
 }
 
 .score-label {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -152,8 +156,9 @@ body::before {
 
 .user {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  text-align: left;
   padding: 6px 10px;
   background: transparent;
   border: 1px solid;
@@ -181,6 +186,129 @@ body::before {
   text-shadow: 0 0 6px currentColor;
 }
 
+.user span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user b {
+  margin-left: 8px;
+}
+
+.user small {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+#auth {
+  width: min(340px, calc(100vw - 32px));
+  padding: 20px;
+  background: #0a0814;
+  color: #fff;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(5, 242, 242, 0.35);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#auth::backdrop {
+  background: rgba(5, 5, 10, 0.75);
+}
+
+#auth-form,
+#auth label {
+  display: flex;
+  flex-direction: column;
+}
+
+#auth-form {
+  gap: 12px;
+}
+
+#auth label {
+  gap: 4px;
+  font-weight: 600;
+}
+
+#auth label[hidden] {
+  display: none;
+}
+
+#auth h2 {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+#auth input {
+  padding: 8px 10px;
+  background: var(--bg);
+  color: #fff;
+  border: 1px solid rgba(5, 242, 242, 0.4);
+  border-radius: 6px;
+  font: inherit;
+}
+
+#auth input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 1px;
+}
+
+#auth input[aria-invalid="true"] {
+  border-color: #ff6b81;
+  outline-color: #ff6b81;
+}
+
+#auth-error {
+  margin: 0;
+  color: #ff8fa3;
+  font-weight: 600;
+}
+
+#auth-error:empty {
+  display: none;
+}
+
+#auth button {
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#auth #auth-submit {
+  background: var(--cyan);
+  color: var(--bg);
+}
+
+#auth button:hover,
+#auth button:focus-visible {
+  border-color: currentColor;
+}
+
+#auth #auth-submit:hover,
+#auth #auth-submit:focus-visible {
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+#auth button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+#auth #auth-cancel {
+  color: #c9c9d6;
+}
+
 @media (max-width: 480px) {
   #players {
     top: auto;
@@ -195,9 +323,14 @@ body::before {
     overflow-x: auto;
   }
 
+  #user-list li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
   .user {
     white-space: nowrap;
-    gap: 8px;
+    column-gap: 8px;
   }
 
   #scoreboard {

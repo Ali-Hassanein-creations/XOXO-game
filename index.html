@@ -49,6 +49,28 @@
     <button id="reset">Reset</button>
   </main>
 
+  <dialog id="auth" aria-labelledby="auth-title">
+    <form id="auth-form">
+      <h2 id="auth-title">Log in</h2>
+      <label>
+        Username
+        <input id="auth-username" required minlength="3" maxlength="16" pattern="[A-Za-z0-9_]+" title="3 to 16 letters, numbers, or underscores" autocomplete="username" autocapitalize="none" spellcheck="false">
+      </label>
+      <label>
+        Password
+        <input id="auth-password" type="password" required minlength="8" title="At least 8 characters" autocomplete="current-password">
+      </label>
+      <label id="auth-confirm-row" hidden>
+        Confirm password
+        <input id="auth-confirm" type="password" autocomplete="new-password">
+      </label>
+      <p id="auth-error" role="alert"></p>
+      <button id="auth-submit" type="submit">Log in</button>
+      <button id="auth-switch" type="button">New here? Create an account</button>
+      <button id="auth-cancel" type="button">Cancel</button>
+    </form>
+  </dialog>
+
   <script src="script.js"></script>
 </body>
 </html>
